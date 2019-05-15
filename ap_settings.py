@@ -1,17 +1,18 @@
 # Define variables
 # SETTINGS is [ (AP_NUMBER, SAVE_RESULTS, SKIP) ]
 
-TEST_SETTINGS_INDEX = 3
+TEST_SETTINGS_INDEX = 0
 
 SETTINGS = [
             (0, 0, 0),
             ]
 
 # Defining the fuzzing MAC address device
-STA_MAC = "00:20:A6:61:2D:09"
+#STA_MAC = "00:20:A6:61:2D:09"
+STA_MAC = "44:07:0b:54:27:d2"
 
 # Defining the injection interface
-IFACE   = "ath0"
+IFACE   = "en0"
 
 ##### BELOW VARIABLES SHOULD NOT BE TWEAKED BY THE USER
 
@@ -20,8 +21,11 @@ SAVE_RESULTS = SETTINGS[TEST_SETTINGS_INDEX][1]
 SKIP = SETTINGS[TEST_SETTINGS_INDEX][2]
 
 # Defining fuzzing specific variables
+#AP = [
+#        ('kikoo', '00:11:22:33:44:55', 11, 'WPA-PSK'),
+#        ][AP_NUMBER]
 AP = [
-        ('kikoo', '00:11:22:33:44:55', 11, 'WPA-PSK'),
+        ('mvanotti', 'a4:c3:f0:94:7e:fb', 1, 'Open'),
         ][AP_NUMBER]
 
 SSID = AP[0]
