@@ -10,9 +10,10 @@ SETTINGS = [
 # Defining the fuzzing MAC address device
 #STA_MAC = "00:20:A6:61:2D:09"
 STA_MAC = "44:07:0b:54:27:d2"
+STA_MAC = "44:07:0b:62:bb:d1"
 
 # Defining the injection interface
-IFACE   = "en0"
+IFACE   = "wlp2s0"
 
 ##### BELOW VARIABLES SHOULD NOT BE TWEAKED BY THE USER
 
@@ -25,7 +26,7 @@ SKIP = SETTINGS[TEST_SETTINGS_INDEX][2]
 #        ('kikoo', '00:11:22:33:44:55', 11, 'WPA-PSK'),
 #        ][AP_NUMBER]
 AP = [
-        ('mvanotti', 'a4:c3:f0:94:7e:fb', 1, 'Open'),
+        ('Ricardo Ruben 2', '3c:28:6d:e9:80:68', 11, 'Open'),
         ][AP_NUMBER]
 
 SSID = AP[0]

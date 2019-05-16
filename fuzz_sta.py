@@ -10,6 +10,10 @@ import struct
 # Assume that wireless card is in monitor mode on appropriate channel
 # Saves from lot of dependencies (lorcon, pylorcon...)
 
+def remove_radio_tap(pkt):
+    radio_size = struct.unpack("<H", pkt[2:4])[0]
+    return pkt[radio_size:]
+
 def listen(s):
     """
     Returns whenever STA active scanning is detected.
@@ -19,12 +23,14 @@ def listen(s):
     def isscan(pkt):
         if len(pkt) >= 24:
             if pkt[0] == "\x40" and pkt[10:16] == mac2str(STA_MAC):
+                sess.log(pkt[10:16])
                 return True
         return False
 
     sess.log("waiting for active scanning from %s" % STA_MAC)
     while True:
         ans = s.recv(1024)
+        ans = remove_radio_tap(ans)
         answered = isscan(ans)
         if answered:
             sess.log("active scanning detected from %s" % STA_MAC)
@@ -50,6 +56,7 @@ def is_alive():
 
     while (time.time() - start_time < LISTEN_TIME):
         ans = s.recv(1024)
+        ans = remove_radio_tap(ans)
         if isscan(ans):
             alive = True
             break
